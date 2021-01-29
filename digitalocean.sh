@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #
-# Produce a raw disk image suitable for import into AWS for use in AMI
-# creation.  Will output an uncompressed raw disk image at, e.g.,
+# Produce a raw disk image suitable for import into DigitalOcean for custom
+# image creation.  Will output an uncompressed raw disk image at, e.g.,
 #
-#     /rpool/images/output/aws-omnios-bloody.raw
+#     /rpool/images/output/digitalocean-omnios-bloody.raw
 #
 # This tool requires "setup.sh" and "strap.sh" to have been run first.
 #
@@ -25,7 +25,7 @@ pfexec "$TOP/image-builder/target/release/image-builder" \
     build \
     -T "$TOP/templates" \
     -d "$DATASET" \
-    -g aws \
+    -g digitalocean \
     -n "omnios-$BRANCH"
 
-ls -lh "$MOUNTPOINT/output/aws-omnios-$BRANCH.raw"
+ls -lh "$MOUNTPOINT/output/digitalocean-omnios-$BRANCH.raw"

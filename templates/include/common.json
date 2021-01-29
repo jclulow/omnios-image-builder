@@ -25,10 +25,6 @@
             "contents": "unknown\n",
             "owner": "root", "group": "root", "mode": "644" },
 
-        { "t": "ensure_file", "file": "/etc/default/dhcpagent",
-            "src": "dhcpagent",
-            "owner": "root", "group": "sys", "mode": "644" },
-
         { "t": "ensure_file", "file": "/etc/resolv.conf",
             "contents": "",
             "owner": "root", "group": "root", "mode": "644" }

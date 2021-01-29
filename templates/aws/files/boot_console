@@ -1,0 +1,12 @@
+autoboot_delay="1"
+os_console="ttya"
+ttya-mode="115200,8,n,1,-"
+
+#
+# If you're on AWS and trying to debug the system, it may be better to use the
+# framebuffer console.  The API for getting a screenshot of an EC2 guest is
+# immediately responsive, whereas the serial console API can take a random
+# number of minutes before output is available.
+#
+#console="text"
+#os_console="text"

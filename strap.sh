@@ -15,7 +15,7 @@ set -o errexit
 
 DATASET=rpool/images
 MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
-BRANCH=bloody
+BRANCH=${BRANCH:-bloody}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 

@@ -1,0 +1,7 @@
+#
+# DigitalOcean provides a functioning interactive framebuffer console, but no
+# serial console.  Leave a little time to interrupt the boot sequence:
+#
+autoboot_delay="5"
+console="text"
+os_console="text"

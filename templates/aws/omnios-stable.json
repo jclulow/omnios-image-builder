@@ -8,7 +8,7 @@
 
     "steps": [
         { "t": "create_be" },
-        { "t": "unpack_tar", "name": "omnios-bloody.tar.gz" },
+        { "t": "unpack_tar", "name": "omnios-stable.tar.gz" },
 
         { "t": "include", "name": "devfs" },
 

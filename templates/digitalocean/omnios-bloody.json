@@ -29,10 +29,6 @@
             "src": "boot_console",
             "owner": "root", "group": "root", "mode": "644" },
 
-        { "t": "ensure_file", "file": "/etc/default/dhcpagent",
-            "src": "dhcpagent",
-            "owner": "root", "group": "sys", "mode": "644" },
-
         { "t": "include", "name": "metadata" },
 
         { "t": "pkg_set_property",

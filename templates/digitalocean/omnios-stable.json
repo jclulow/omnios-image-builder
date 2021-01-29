@@ -8,7 +8,7 @@
 
     "steps": [
         { "t": "create_be" },
-        { "t": "unpack_tar", "name": "omnios-bloody.tar.gz" },
+        { "t": "unpack_tar", "name": "omnios-stable.tar.gz" },
 
         { "t": "include", "name": "devfs" },
 
@@ -28,10 +28,6 @@
         { "t": "ensure_file", "file": "/boot/conf.d/console",
             "src": "boot_console",
             "owner": "root", "group": "root", "mode": "644" },
-
-        { "t": "ensure_file", "file": "/etc/default/dhcpagent",
-            "src": "dhcpagent",
-            "owner": "root", "group": "sys", "mode": "644" },
 
         { "t": "include", "name": "metadata" },
 
