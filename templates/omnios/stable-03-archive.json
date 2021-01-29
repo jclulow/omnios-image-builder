@@ -1,0 +1,10 @@
+{
+    "dataset": {
+        "name": "stable",
+        "input_snapshot": "image"
+    },
+
+    "steps": [
+        { "t": "pack_tar", "name": "omnios-stable.tar.gz" }
+    ]
+}

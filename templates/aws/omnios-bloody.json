@@ -1,0 +1,41 @@
+{
+    "pool": {
+        "name": "rpool",
+        "ashift": 12,
+        "uefi": false,
+        "size": 2000
+    },
+
+    "steps": [
+        { "t": "create_be" },
+        { "t": "unpack_tar", "name": "omnios-bloody.tar.gz" },
+
+        { "t": "include", "name": "devfs" },
+
+        { "t": "assemble_files",
+            "dir": "/etc/versions",
+            "output": "/etc/versions/build",
+            "prefix": "build." },
+
+        { "t": "make_bootable" },
+
+        { "t": "include", "name": "common" },
+
+        { "t": "ensure_file", "file": "/etc/ssh/sshd_config",
+            "src": "omnios_sshd_config",
+            "owner": "root", "group": "bin", "mode": "644" },
+
+        { "t": "ensure_file", "file": "/boot/conf.d/workaround",
+            "src": "workaround",
+            "owner": "root", "group": "root", "mode": "644" },
+
+        { "t": "include", "name": "metadata" },
+
+        { "t": "pkg_set_property",
+            "name": "ca-path", "value": "/etc/ssl/certs" },
+        { "t": "pkg_set_property",
+            "name": "auto-be-name", "value": "omnios-r%r" },
+
+        { "t": "include", "name": "finalise" }
+    ]
+}

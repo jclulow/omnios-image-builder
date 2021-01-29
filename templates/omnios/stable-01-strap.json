@@ -1,0 +1,23 @@
+{
+    "dataset": {
+        "name": "stable",
+        "output_snapshot": "strap"
+    },
+
+    "steps": [
+        { "t": "pkg_image_create",
+            "publisher": "omnios",
+            "uri": "https://pkg.omniosce.org/r151036/core/" },
+
+        { "t": "pkg_approve_ca_cert",
+            "publisher": "omnios",
+            "certfile": "omniosce-ca.cert.pem" },
+
+        { "t": "pkg_change_variant", "variant": "opensolaris.zone",
+            "value": "global" },
+
+        { "t": "pkg_install", "pkgs": [
+            "entire@11-151036"
+        ] }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "dataset": {
+        "name": "bloody",
+        "input_snapshot": "image"
+    },
+
+    "steps": [
+        { "t": "pack_tar", "name": "omnios-bloody.tar.gz" }
+    ]
+}
