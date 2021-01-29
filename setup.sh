@@ -11,16 +11,51 @@ set -o errexit
 TOP=$(cd "$(dirname "$0")" && pwd)
 FILES="$TOP/templates/files"
 
-cd "$TOP"
-if [[ ! -d image-builder ]]; then
-	git clone git@github.com:illumos/image-builder.git \
-	    image-builder
-fi
+function github_url {
+	local org=$1
+	local repo=$2
+	local protocol=$3
 
-if [[ ! -d metadata-agent ]]; then
-	git clone git@github.com:illumos/metadata-agent.git \
-	    metadata-agent
-fi
+	if [[ -n "$PROTOCOL" ]]; then
+		protocol=$PROTOCOL
+	elif [[ -z "$protocol" ]]; then
+		protocol=https
+	fi
+
+	case "$protocol" in
+	ssh)
+		printf 'git@github.com:%s/%s.git' "$org" "$repo"
+		;;
+	https)
+		printf 'https://github.com/%s/%s.git' "$org" "$repo"
+		;;
+	*)
+		printf 'ERROR: invalid git transport: %s\n' "$protocol" >&2
+		exit 1
+	esac
+}
+
+function github_clone {
+	local org=$1
+	local repo=$2
+	local dirname=$3
+	local protocol=$4
+	local url=
+
+	if [[ -d "$dirname" ]]; then
+		return 0
+	fi
+
+	if ! url=$(github_url "$org" "$repo" $protocol); then
+		return 1
+	fi
+
+	git clone "$url" "$dirname"
+}
+
+cd "$TOP"
+github_clone illumos		image-builder		image-builder
+github_clone illumos		metadata-agent		metadata-agent
 
 (cd image-builder && cargo build --release)
 (cd metadata-agent && cargo build --release)
