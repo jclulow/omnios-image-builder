@@ -16,7 +16,8 @@
             "/network/telnet",
             "/service/network/ntpsec",
             "/web/curl",
-            "/web/wget"
+            "/web/wget",
+            "/system/management/mdata-client"
         ] },
 
         { "t": "pkg_purge_history" },
