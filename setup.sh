@@ -43,6 +43,9 @@ function github_clone {
 	local url=
 
 	if [[ -d "$dirname" ]]; then
+		if ! (cd "$dirname" && git pull --rebase); then
+			return 1
+		fi
 		return 0
 	fi
 
@@ -56,9 +59,11 @@ function github_clone {
 cd "$TOP"
 github_clone illumos		image-builder		image-builder
 github_clone illumos		metadata-agent		metadata-agent
+github_clone oxidecomputer	aws-wire-lengths	aws-wire-lengths
 
 (cd image-builder && cargo build --release)
 (cd metadata-agent && cargo build --release)
+(cd aws-wire-lengths && cargo build --release)
 
 mkdir -p "$FILES"
 

@@ -1,0 +1,21 @@
+{
+    "dataset": {
+        "name": "hipster",
+        "output_snapshot": "strap"
+    },
+
+    "steps": [
+        { "t": "pkg_image_create",
+            "publisher": "openindiana.org",
+            "uri": "http://pkg.openindiana.org/hipster/" },
+
+        { "t": "pkg_install", "pkgs": [ "entire" ] },
+
+        { "t": "pkg_change_variant", "variant": "opensolaris.zone",
+            "value": "global" },
+
+        { "t": "pkg_install", "pkgs": [
+            "minimal_install"
+        ] }
+    ]
+}

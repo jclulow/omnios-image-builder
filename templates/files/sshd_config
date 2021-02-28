@@ -1,0 +1,77 @@
+#
+# Configuration file for sshd(1m) (see also sshd_config(4))
+#
+
+Protocol 2
+Port 22
+
+# If port forwarding is enabled (default), specify if the server can bind to
+# INADDR_ANY.
+# This allows the local port forwarding to work when connections are received
+# from any remote host.
+GatewayPorts no
+
+# X11 tunneling options
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost yes
+
+# The maximum number of concurrent unauthenticated connections to sshd.
+# start:rate:full see sshd(1) for more information.
+# The default is 10 unauthenticated clients.
+#MaxStartups 10:30:60
+
+# Banner to be printed before authentication starts.
+#Banner /etc/issue
+
+# Should sshd print the /etc/motd file and check for mail.
+# On Solaris it is assumed that the login shell will do these (eg /etc/profile).
+PrintMotd no
+
+# KeepAlive specifies whether keep alive messages are sent to the client.
+# See sshd(1) for detailed description of what this means.
+# Note that the client may also be sending keep alive messages to the server.
+KeepAlive yes
+
+# Syslog facility and level
+SyslogFacility auth
+LogLevel info
+
+#
+# Authentication configuration
+#
+
+# Host private key files
+# Must be on a local disk and readable only by the root user (root:sys 600).
+# HostKey /etc/ssh/ssh_host_rsa_key
+# HostKey /etc/ssh/ssh_host_dsa_key
+
+# Ensure secure permissions on users .ssh directory.
+StrictModes yes
+
+# Length of time in seconds before a client that hasn't completed
+# authentication is disconnected.
+# Default is 600 seconds. 0 means no time limit.
+LoginGraceTime 600
+
+# Maximum number of retries for authentication
+MaxAuthTries	6
+
+# Are logins to accounts with empty passwords allowed.
+# If PermitEmptyPasswords is no, pass PAM_DISALLOW_NULL_AUTHTOK
+# to pam_authenticate(3PAM).
+PermitEmptyPasswords no
+
+# To disable tunneled clear text passwords, change PasswordAuthentication to no.
+# You probably also need to disable ChallengeResponseAuthentication.
+PasswordAuthentication yes
+
+# Change to no to disable s/key passwords
+#ChallengeResponseAuthentication yes
+
+PermitRootLogin without-password
+
+# sftp subsystem
+Subsystem	sftp	internal-sftp
+
+IgnoreRhosts yes
