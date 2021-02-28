@@ -15,6 +15,7 @@ set -o errexit
 
 DATASET=rpool/images
 MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
+DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-bloody}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
@@ -26,6 +27,6 @@ pfexec "$TOP/image-builder/target/release/image-builder" \
     -T "$TOP/templates" \
     -d "$DATASET" \
     -g aws \
-    -n "omnios-$BRANCH"
+    -n "$DISTRO-$BRANCH"
 
-ls -lh "$MOUNTPOINT/output/aws-omnios-$BRANCH.raw"
+ls -lh "$MOUNTPOINT/output/aws-$DISTRO-$BRANCH.raw"

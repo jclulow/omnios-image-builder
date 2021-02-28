@@ -1,0 +1,35 @@
+{
+    "pool": {
+        "name": "rpool",
+        "ashift": 12,
+        "uefi": false,
+        "size": 2000
+    },
+
+    "steps": [
+        { "t": "create_be" },
+        { "t": "unpack_tar", "name": "openindiana-hipster.tar.gz" },
+
+        { "t": "include", "name": "devfs" },
+
+        { "t": "make_bootable" },
+
+        { "t": "include", "name": "common" },
+
+        { "t": "ensure_file", "file": "/etc/ssh/sshd_config",
+            "src": "sshd_config",
+            "owner": "root", "group": "bin", "mode": "644" },
+
+        { "t": "ensure_file", "file": "/boot/conf.d/console",
+            "src": "boot_console",
+            "owner": "root", "group": "root", "mode": "644" },
+
+        { "t": "ensure_file", "file": "/etc/default/dhcpagent",
+            "src": "dhcpagent",
+            "owner": "root", "group": "sys", "mode": "644" },
+
+        { "t": "include", "name": "metadata" },
+
+        { "t": "include", "name": "finalise" }
+    ]
+}

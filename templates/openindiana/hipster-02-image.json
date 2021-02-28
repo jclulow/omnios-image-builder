@@ -1,0 +1,35 @@
+{
+    "dataset": {
+        "name": "hipster",
+        "input_snapshot": "strap",
+        "output_snapshot": "image"
+    },
+
+    "steps": [
+        { "t": "pkg_install", "pkgs": [
+            "vim",
+            "rsync",
+            "system/virtualization/mdata-client",
+            "system/library/gcc-4-runtime",
+            "system/library/g++-4-runtime",
+            "diagnostic/diskinfo",
+            "system/monitoring/arcstat"
+        ] },
+
+        { "t": "pkg_uninstall", "pkgs": [
+            "minimal_install",
+            "driver/pcmcia",
+            "diagnostic/ddu/data",
+            "diagnostic/ddu/library",
+            "diagnostic/ddu/text",
+            "service/management/sysding",
+            "service/network/smtp/sendmail",
+            "system/boot/grub",
+            "system/network/nis"
+        ] },
+
+        { "t": "pkg_purge_history" },
+
+        { "t": "seed_smf" }
+    ]
+}
