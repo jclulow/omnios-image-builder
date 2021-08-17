@@ -7,7 +7,7 @@
     "steps": [
         { "t": "pkg_image_create",
             "publisher": "omnios",
-            "uri": "https://pkg.omniosce.org/r151036/core/" },
+            "uri": "https://pkg.omniosce.org/r151038/core/" },
 
         { "t": "pkg_approve_ca_cert",
             "publisher": "omnios",
@@ -16,8 +16,8 @@
         { "t": "pkg_change_variant", "variant": "opensolaris.zone",
             "value": "global" },
 
-        { "t": "pkg_install", "pkgs": [
-            "entire@11-151036"
+        { "t": "pkg_install", "include_optional": true, "pkgs": [
+            "entire@11-151038"
         ] }
     ]
 }
