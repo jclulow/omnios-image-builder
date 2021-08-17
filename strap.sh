@@ -19,16 +19,45 @@ BRANCH=${BRANCH:-bloody}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 
+STRAP_ARGS=()
+IMAGE_SUFFIX=
+
+while getopts 'fs:' c; do
+	case "$c" in
+	f)
+		#
+		# Use -f to request a full reset from the image builder, thus
+		# effectively destroying any existing files and starting from a
+		# freshly installed set of OS files.
+		#
+		STRAP_ARGS+=( '--fullreset' )
+		;;
+	s)
+		IMAGE_SUFFIX="-$OPTARG"
+		;;
+	\?)
+		printf 'usage: %s [-f]\n' "$0" >&2
+		exit 2
+		;;
+	esac
+done
+shift $((OPTIND - 1))
+
 cd "$TOP"
 
-for n in 01-strap 02-image 03-archive; do
+for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
+	ARGS=()
+	if [[ $n == 01-strap ]]; then
+		ARGS=( "${STRAP_ARGS[@]}" )
+	fi
 	banner "$n"
 	pfexec "$TOP/image-builder/target/release/image-builder" \
 	    build \
 	    -T "$TOP/templates" \
 	    -d "$DATASET" \
 	    -g omnios \
-	    -n "$BRANCH-$n"
+	    -n "$BRANCH-$n" \
+	    "${ARGS[@]}"
 done
 
 ls -lh "$MOUNTPOINT/output/omnios-$BRANCH.tar.gz"
