@@ -38,7 +38,7 @@ cd "$TOP"
 
 S3_PREFIX="amifromfile-$RANDOM$RANDOM$RANDOM"
 
-time "$TOP/aws-wire-lengths/target/release/aws-wire-lengths" \
+time "$TOP/aws-wire-lengths/target/debug/aws-wire-lengths" \
     ami-from-file \
     -p "$S3_PREFIX" \
     -f "$FILE" \

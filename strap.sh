@@ -52,7 +52,7 @@ for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
 		ARGS=( "${STRAP_ARGS[@]}" )
 	fi
 	banner "$n"
-	pfexec "$TOP/image-builder/target/release/image-builder" \
+	pfexec "$TOP/image-builder/target/debug/image-builder" \
 	    build \
 	    -T "$TOP/templates" \
 	    -d "$DATASET" \

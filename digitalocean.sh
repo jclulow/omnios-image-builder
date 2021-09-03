@@ -21,7 +21,7 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 
 cd "$TOP"
 
-pfexec "$TOP/image-builder/target/release/image-builder" \
+pfexec "$TOP/image-builder/target/debug/image-builder" \
     build \
     -T "$TOP/templates" \
     -d "$DATASET" \
