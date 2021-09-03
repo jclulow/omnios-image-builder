@@ -15,6 +15,7 @@ set -o errexit
 
 DATASET=rpool/images
 MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
+DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-bloody}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
@@ -55,9 +56,9 @@ for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
 	    build \
 	    -T "$TOP/templates" \
 	    -d "$DATASET" \
-	    -g omnios \
+	    -g "$DISTRO" \
 	    -n "$BRANCH-$n" \
 	    "${ARGS[@]}"
 done
 
-ls -lh "$MOUNTPOINT/output/omnios-$BRANCH.tar.gz"
+ls -lh "$MOUNTPOINT/output/$DISTRO-$BRANCH.tar.gz"

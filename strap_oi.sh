@@ -9,26 +9,11 @@
 # This tool requires "setup.sh" to have been run first.
 #
 
-set -o xtrace
-set -o pipefail
-set -o errexit
-
-DATASET=rpool/images
-MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
-BRANCH=${BRANCH:-hipster}
+export DISTRO=${DISTRO:-openindiana}
+export BRANCH=${BRANCH:-hipster}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 
 cd "$TOP"
 
-for n in 01-strap 02-image 03-archive; do
-	banner "$n"
-	pfexec "$TOP/image-builder/target/release/image-builder" \
-	    build \
-	    -T "$TOP/templates" \
-	    -d "$DATASET" \
-	    -g openindiana \
-	    -n "$BRANCH-$n"
-done
-
-ls -lh "$MOUNTPOINT/output/openindiana-$BRANCH.tar.gz"
+./strap.sh "$@"
