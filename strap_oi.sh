@@ -16,4 +16,7 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 
 cd "$TOP"
 
+#
+# NOTE: See strap.sh for arguments that are also valid here.
+#
 ./strap.sh "$@"

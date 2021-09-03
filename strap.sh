@@ -34,6 +34,15 @@ while getopts 'fs:' c; do
 		STRAP_ARGS+=( '--fullreset' )
 		;;
 	s)
+		#
+		# You can customise the strap image by swapping out the middle
+		# stage, 02-image.  Normally this takes the expensive base OS
+		# step (01-strap) and adds a few extra packages for
+		# convenience.  If you specify a -s option here, e.g.,
+		# "-s mine", we will look for, e.g.,
+		# "hipster-02-image-mine.json" instead of the stock
+		# "hipster-02-image.json".
+		#
 		IMAGE_SUFFIX="-$OPTARG"
 		;;
 	\?)
