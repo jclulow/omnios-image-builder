@@ -40,6 +40,7 @@ S3_PREFIX="amifromfile-$RANDOM$RANDOM$RANDOM"
 
 time "$TOP/aws-wire-lengths/target/debug/aws-wire-lengths" \
     ami-from-file \
+    -E \
     -p "$S3_PREFIX" \
     -f "$FILE" \
     -b "$BUCKET" \
