@@ -14,8 +14,9 @@ set -o xtrace
 set -o pipefail
 set -o errexit
 
-DATASET=rpool/images
-MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
+TOP=$(cd "$(dirname "$0")" && pwd)
+. "$TOP/lib/common.sh"
+
 DISTRO=${DISTRO:-openindiana}
 BRANCH=${BRANCH:-hipster}
 CONSOLE=${CONSOLE:-ttya}

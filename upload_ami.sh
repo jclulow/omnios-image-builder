@@ -14,6 +14,9 @@ set -o xtrace
 set -o pipefail
 set -o errexit
 
+TOP=$(cd "$(dirname "$0")" && pwd)
+. "$TOP/lib/common.sh"
+
 BUCKET=$1
 AMI_NAME=$2
 if [[ -z "$BUCKET" || -z "$AMI_NAME" ]]; then
@@ -21,8 +24,6 @@ if [[ -z "$BUCKET" || -z "$AMI_NAME" ]]; then
 	exit 1
 fi
 
-DATASET=rpool/images
-MOUNTPOINT="$(zfs get -Ho value mountpoint "$DATASET")"
 DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-stable}
 FILE="$MOUNTPOINT/output/aws-$DISTRO-$BRANCH.raw"
