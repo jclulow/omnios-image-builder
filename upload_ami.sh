@@ -14,15 +14,14 @@ set -o xtrace
 set -o pipefail
 set -o errexit
 
-TOP=$(cd "$(dirname "$0")" && pwd)
-. "$TOP/lib/common.sh"
-
-BUCKET=$1
-AMI_NAME=$2
-if [[ -z "$BUCKET" || -z "$AMI_NAME" ]]; then
-	printf 'ERROR: usage: %s <bucket> <ami_name>\n' "$0" >&2
+AMI_NAME=$1
+if [[ -z "$AMI_NAME" ]]; then
+	printf 'ERROR: usage: %s <ami_name>\n' "$0" >&2
 	exit 1
 fi
+
+TOP=$(cd "$(dirname "$0")" && pwd)
+. "$TOP/lib/common.sh"
 
 DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-stable}
@@ -33,16 +32,11 @@ if [[ ! -f "$FILE" ]]; then
 	exit 1
 fi
 
-TOP=$(cd "$(dirname "$0")" && pwd)
-
 cd "$TOP"
 
-S3_PREFIX="amifromfile-$RANDOM$RANDOM$RANDOM"
+AWL="$TOP/aws-wire-lengths/target/debug/aws-wire-lengths"
 
-time "$TOP/aws-wire-lengths/target/debug/aws-wire-lengths" \
-    ami-from-file \
+time "$AWL" image publish \
     -E \
-    -p "$S3_PREFIX" \
     -f "$FILE" \
-    -b "$BUCKET" \
     -n "$AMI_NAME"
