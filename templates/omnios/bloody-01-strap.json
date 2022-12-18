@@ -9,6 +9,10 @@
             "publisher": "omnios",
             "uri": "https://pkg.omniosce.org/bloody/core/" },
 
+        { "t": "pkg_set_publisher", "with": "extra",
+            "publisher": "extra.omnios",
+            "uri": "https://pkg.omniosce.org/bloody/extra/" },
+
         { "t": "pkg_approve_ca_cert",
             "publisher": "omnios",
             "certfile": "omniosce-ca.cert.pem" },

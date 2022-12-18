@@ -22,9 +22,10 @@ BRANCH=${BRANCH:-bloody}
 TOP=$(cd "$(dirname "$0")" && pwd)
 
 STRAP_ARGS=()
+ALL_ARGS=()
 IMAGE_SUFFIX=
 
-while getopts 'fs:' c; do
+while getopts 'BEfs:' c; do
 	case "$c" in
 	f)
 		#
@@ -33,6 +34,18 @@ while getopts 'fs:' c; do
 		# freshly installed set of OS files.
 		#
 		STRAP_ARGS+=( '--fullreset' )
+		;;
+	E)
+		#
+		# Enable OmniOS Extra (Additional packages) publisher.
+		#
+		ALL_ARGS+=( '-F' 'extra' )
+		;;
+	B)
+		#
+		# Install software build tools.
+		#
+		ALL_ARGS+=( '-F' 'build' )
 		;;
 	s)
 		#
@@ -68,6 +81,7 @@ for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
 	    -d "$DATASET" \
 	    -g "$DISTRO" \
 	    -n "$BRANCH-$n" \
+	    "${ALL_ARGS[@]}" \
 	    "${ARGS[@]}"
 done
 

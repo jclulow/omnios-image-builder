@@ -20,6 +20,11 @@
             "/system/management/mdata-client"
         ] },
 
+        { "t": "pkg_install", "with": "build", "pkgs": [
+            "/developer/build-essential",
+            "/developer/omnios-build-tools"
+        ] },
+
         { "t": "pkg_purge_history" },
 
         { "t": "seed_smf" }
