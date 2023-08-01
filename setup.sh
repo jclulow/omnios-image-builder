@@ -59,13 +59,18 @@ function github_clone {
 cd "$TOP"
 github_clone illumos		image-builder		image-builder
 github_clone illumos		metadata-agent		metadata-agent
-github_clone oxidecomputer	aws-wire-lengths	aws-wire-lengths
+if [[ -z $NO_AWS ]]; then
+	github_clone oxidecomputer \
+				aws-wire-lengths	aws-wire-lengths
+fi
 
 #
 # These are local tools, so debug builds are fine and usually quicker to do:
 #
 (cd image-builder && cargo build)
-(cd aws-wire-lengths && cargo build)
+if [[ -z $NO_AWS ]]; then
+	(cd aws-wire-lengths && cargo build)
+fi
 
 #
 # We ship this one, so it should be a release build:
