@@ -4,7 +4,7 @@
 # Use the Image Builder to produce a tar file that contains an installed OmniOS
 # image.  The produced file should be something like:
 #
-#     /rpool/images/output/omnios-bloody.tar.gz
+#     /rpool/images/output/omnios-stable-r151046.tar.gz
 #
 # This tool requires "setup.sh" to have been run first.
 #
@@ -17,7 +17,8 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 . "$TOP/lib/common.sh"
 
 DISTRO=${DISTRO:-omnios}
-BRANCH=${BRANCH:-bloody}
+BRANCH=${BRANCH:-stable}
+RELEASE=${RELEASE:-151046}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 
@@ -81,6 +82,7 @@ for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
 	    -d "$DATASET" \
 	    -g "$DISTRO" \
 	    -n "$BRANCH-$n" \
+	    -F "release=$RELEASE" \
 	    "${ALL_ARGS[@]}" \
 	    "${ARGS[@]}"
 done

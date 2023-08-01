@@ -5,6 +5,6 @@
     },
 
     "steps": [
-        { "t": "pack_tar", "name": "omnios-stable.tar.gz" }
+        { "t": "pack_tar", "name": "omnios-stable-r${release}.tar" }
     ]
 }

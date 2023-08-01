@@ -4,7 +4,7 @@
 # Produce a raw disk image suitable for use with SmartOS bhyve.  Will output an
 # uncompressed raw disk image at, e.g.,
 #
-#     /rpool/images/output/smartosbhyve-omnios-stable.raw
+#     /rpool/images/output/smartosbhyve-omnios-stable-r151046.raw
 #
 # This tool requires "setup.sh" and "strap.sh" to have been run first.
 #
@@ -18,6 +18,7 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 
 DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-stable}
+RELEASE=${RELEASE:-151046}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 
@@ -28,6 +29,8 @@ pfexec "$TOP/image-builder/target/debug/image-builder" \
     -T "$TOP/templates" \
     -d "$DATASET" \
     -g smartosbhyve \
-    -n "$DISTRO-$BRANCH"
+    -F "release=$RELEASE" \
+    -n "$DISTRO-$BRANCH" \
+    -N "$DISTRO-$BRANCH-r$RELEASE"
 
-ls -lh "$MOUNTPOINT/output/smartosbhyve-$DISTRO-$BRANCH.raw"
+ls -lh "$MOUNTPOINT/output/smartosbhyve-$DISTRO-$BRANCH-r$RELEASE.raw"
