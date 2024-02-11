@@ -9,9 +9,19 @@
             "publisher": "omnios",
             "uri": "https://pkg.omniosce.org/r${release}/core/" },
 
+        { "t": "pkg_set_publisher", "without": "no-mirror",
+            "publisher": "omnios",
+            "mirror_uri":
+                "https://us-west.mirror.omnios.org/r${release}/core/" },
+
         { "t": "pkg_set_publisher", "with": "extra",
             "publisher": "extra.omnios",
             "uri": "https://pkg.omniosce.org/r${release}/extra/" },
+
+        { "t": "pkg_set_publisher", "without": "no-mirror",
+            "publisher": "extra.omnios",
+            "mirror_uri":
+                "https://us-west.mirror.omnios.org/r${release}/extra/" },
 
         { "t": "pkg_approve_ca_cert",
             "publisher": "omnios",
