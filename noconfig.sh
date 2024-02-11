@@ -17,8 +17,9 @@ set -o errexit
 TOP=$(cd "$(dirname "$0")" && pwd)
 . "$TOP/lib/common.sh"
 
-DISTRO=${DISTRO:-openindiana}
-BRANCH=${BRANCH:-hipster}
+DISTRO=${DISTRO:-omnios}
+BRANCH=${BRANCH:-stable}
+RELEASE=${RELEASE:-151046}
 CONSOLE=${CONSOLE:-ttya}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
@@ -30,6 +31,9 @@ pfexec "$TOP/image-builder/target/debug/image-builder" \
     -T "$TOP/templates" \
     -d "$DATASET" \
     -g noconfig \
-    -n "$CONSOLE-$DISTRO-$BRANCH"
+    -F "console=$CONSOLE" \
+    -F "release=$RELEASE" \
+    -n "$DISTRO-$BRANCH" \
+    -N "$DISTRO-$BRANCH-r$RELEASE"
 
-ls -lh "$MOUNTPOINT/output/noconfig-$CONSOLE-$DISTRO-$BRANCH.raw"
+ls -lh "$MOUNTPOINT/output/noconfig-$DISTRO-$BRANCH-r$RELEASE.raw"
