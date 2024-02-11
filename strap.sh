@@ -4,7 +4,7 @@
 # Use the Image Builder to produce a tar file that contains an installed OmniOS
 # image.  The produced file should be something like:
 #
-#     /rpool/images/output/omnios-stable-r151046.tar.gz
+#     /rpool/images/output/omnios-stable-r151046.tar
 #
 # This tool requires "setup.sh" to have been run first.
 #
@@ -87,4 +87,4 @@ for n in 01-strap "02-image$IMAGE_SUFFIX" 03-archive; do
 	    "${ARGS[@]}"
 done
 
-ls -lh "$MOUNTPOINT/output/$DISTRO-$BRANCH.tar.gz"
+ls -lh "$MOUNTPOINT/output/$DISTRO-$BRANCH-r$RELEASE.tar"

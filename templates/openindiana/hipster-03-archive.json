@@ -5,6 +5,6 @@
     },
 
     "steps": [
-        { "t": "pack_tar", "name": "openindiana-hipster.tar.gz" }
+        { "t": "pack_tar", "name": "openindiana-hipster.tar" }
     ]
 }

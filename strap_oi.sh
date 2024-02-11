@@ -4,7 +4,7 @@
 # Use the Image Builder to produce a tar file that contains an installed
 # OpenIndiana image.  The produced file should be something like:
 #
-#     /rpool/images/output/openindiana-hipster.tar.gz
+#     /rpool/images/output/openindiana-hipster.tar
 #
 # This tool requires "setup.sh" to have been run first.
 #

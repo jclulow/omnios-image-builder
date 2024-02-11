@@ -8,7 +8,7 @@
 
     "steps": [
         { "t": "create_be" },
-        { "t": "unpack_tar", "name": "openindiana-hipster.tar.gz" },
+        { "t": "unpack_tar", "name": "openindiana-hipster.tar" },
 
         { "t": "include", "name": "devfs" },
 
