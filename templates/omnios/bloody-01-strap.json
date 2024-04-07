@@ -7,11 +7,11 @@
     "steps": [
         { "t": "pkg_image_create",
             "publisher": "omnios",
-            "uri": "https://pkg.omniosce.org/bloody/core/" },
+            "uri": "https://pkg.omnios.org/bloody/core/" },
 
         { "t": "pkg_set_publisher", "with": "extra",
             "publisher": "extra.omnios",
-            "uri": "https://pkg.omniosce.org/bloody/extra/" },
+            "uri": "https://pkg.omnios.org/bloody/extra/" },
 
         { "t": "pkg_approve_ca_cert",
             "publisher": "omnios",
