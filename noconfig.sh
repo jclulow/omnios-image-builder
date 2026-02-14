@@ -19,7 +19,7 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 
 DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-stable}
-RELEASE=${RELEASE:-151046}
+RELEASE=${RELEASE:-151054}
 CONSOLE=${CONSOLE:-ttya}
 
 TOP=$(cd "$(dirname "$0")" && pwd)

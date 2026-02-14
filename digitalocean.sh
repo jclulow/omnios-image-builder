@@ -4,7 +4,7 @@
 # Produce a raw disk image suitable for import into DigitalOcean for custom
 # image creation.  Will output an uncompressed raw disk image at, e.g.,
 #
-#     /rpool/images/output/digitalocean-omnios-stable-r151046.raw
+#     /rpool/images/output/digitalocean-omnios-stable-r151054.raw
 #
 # This tool requires "setup.sh" and "strap.sh" to have been run first.
 #
@@ -18,7 +18,7 @@ TOP=$(cd "$(dirname "$0")" && pwd)
 
 DISTRO=${DISTRO:-omnios}
 BRANCH=${BRANCH:-stable}
-RELEASE=${RELEASE:-151046}
+RELEASE=${RELEASE:-151054}
 
 TOP=$(cd "$(dirname "$0")" && pwd)
 
