@@ -18,7 +18,7 @@
             "publisher": "extra.omnios",
             "uri": "https://pkg.omnios.org/r${release}/extra/" },
 
-        { "t": "pkg_set_publisher", "without": "no-mirror",
+        { "t": "pkg_set_publisher", "with": "extra", "without": "no-mirror",
             "publisher": "extra.omnios",
             "mirror_uri":
                 "https://us-west.mirror.omnios.org/r${release}/extra/" },
