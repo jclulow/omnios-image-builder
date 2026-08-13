@@ -2,10 +2,10 @@
     "pool": {
         "name": "rpool",
         "ashift": 12,
-        "uefi": false,
+        "uefi": true,
         "no_features": false,
         "autoexpand": true,
-        "size": 3000
+        "size": 4000
     },
 
     "steps": [
